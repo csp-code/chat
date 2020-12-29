@@ -10,18 +10,40 @@ def read_file(filename):
 def convert(lines):
 	allen_word_count=0
 	Tom_word_count=0
+	allen_sticker_count=0
+	Tom_sticker_count=0
+	allen_image_count=0
+	Tom_image_count=0	
 	for line in lines:
 		s=line.split(' ')  #字串切割
-		tiem=s[0]
+		time=s[0]
 		name=s[1]
-		if s[1]=='Allen':
-			for m in s[2:]:
-				allen_word_count = allen_word_count + len(m)
-		elif s[1]=='Tom':
-			for m in s[2:]:
-				Tom_word_count = Tom_word_count + len(m)
-	print('Allen說了',str(allen_word_count) ,'字')
-	print('Tom說了',str(Tom_word_count) ,'字')
+		if name=='Allen':
+			if s[2]=='貼圖':
+				allen_sticker_count = allen_sticker_count + 1
+			elif s[2]=='圖片':
+				allen_image_count = allen_image_count + 1
+			else:	 
+				for m in s[2:]:
+					allen_word_count = allen_word_count + len(m)
+		elif name=='Tom':
+			if s[2]=='貼圖':
+				Tom_sticker_count = Tom_sticker_count + 1
+			elif s[2]=='圖片':
+				Tom_image_count = Tom_image_count + 1
+			else:
+				for m in s[2:]:
+					Tom_word_count = Tom_word_count + len(m)
+					print(m)
+	print('------------------------------------')
+	print('Allen說了'+ str(allen_word_count) + '字')
+	print('Allen傳了'+ str(allen_sticker_count) + '個貼圖')
+	print('Allen傳了'+ str(allen_image_count) + '張圖片')
+	print('------------------------------------')
+	print('Tom說了'+ str(Tom_word_count) + '字')
+	print('Tom傳了'+ str(Tom_sticker_count) + '個貼圖')
+	print('Tom傳了'+ str(Tom_image_count) + '張圖片')
+	print('------------------------------------')
 
 
 # 寫入檔案
@@ -32,7 +54,7 @@ def write_file(filename,new):
 
 def main():
 	lines= read_file('[LINE]Tome.txt')
-	print(lines)
+	# print(lines)
 	convert(lines)
 	#write_file('output.txt',lines)
 
