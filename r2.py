@@ -46,16 +46,9 @@ def convert(lines):
 	print('------------------------------------')
 
 
-# 寫入檔案
-def write_file(filename,new):
-	with open(filename, 'w', encoding='utf-8') as f:  #開啟檔案
-		for line in new:
-			f.write(line + '\n')
-
 def main():
 	lines= read_file('[LINE]Tome.txt')
-	# print(lines)
 	convert(lines)
-	#write_file('output.txt',lines)
+
 
 main()
